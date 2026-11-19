@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TruthLens AI — Verify Before You Share</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+
+  <section id="authView" class="auth-shell">
+    <div class="auth-art">
+      <div class="brand"><span class="brand-mark">✳</span> TruthLens <span class="brand-ai">AI</span></div>
+      <div class="art-content">
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="shield-visual"><span>✓</span></div>
+        <p class="eyebrow">CLARITY IN A WORLD OF CONTENT</p>
+        <h1>Pause. Check.<br><em>Then share.</em></h1>
+        <p class="art-copy">A simpler way to understand the information you see online.</p>
+        <div class="trust-points"><span>✦ Easy to understand</span><span>✦ Made for everyone</span></div>
+      </div>
+      <div class="auth-foot">Verify Before You Share. <span>© 2026 TruthLens AI</span></div>
+    </div>
+    <div class="auth-panel">
+      <div class="mobile-brand brand"><span class="brand-mark">✳</span> TruthLens <span class="brand-ai">AI</span></div>
+      <div class="auth-card">
+        <div id="loginForm">
+          <p class="eyebrow">WELCOME BACK</p>
+          <h2>Good to see you.</h2>
+          <p class="muted">Sign in to continue to your workspace.</p>
+          <label>Email address</label><input id="loginEmail" type="email" placeholder="you@example.com">
+          <label>Password</label><input id="loginPassword" type="password" placeholder="Enter your password">
+          <button class="btn primary full" onclick="login()">Sign in <span>→</span></button>
+          <p class="switch-auth">New to TruthLens? <a onclick="showSignup()">Create an account</a></p>
+          <p class="demo-note">Demo access: enter any email and password (3+ characters).</p>
+        </div>
+        <div id="signupForm" class="hidden">
+          <p class="eyebrow">GET STARTED</p>
+          <h2>Create your account.</h2>
+          <p class="muted">A little more clarity starts here.</p>
+          <label>Full name</label><input id="signupName" placeholder="Your name">
+          <label>Email address</label><input id="signupEmail" type="email" placeholder="you@example.com">
+          <label>Create password</label><input id="signupPassword" type="password" placeholder="At least 3 characters">
+          <button class="btn primary full" onclick="signup()">Create account <span>→</span></button>
+          <p class="switch-auth">Already have an account? <a onclick="showLogin()">Sign in</a></p>
+        </div>
+      </div>
+      <p class="auth-privacy">🔒 Your demo account stays in this browser.</p>
+    </div>
+  </section>
+
+  <section id="appView" class="app hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand side-brand"><span class="brand-mark">✳</span> TruthLens <span class="brand-ai">AI</span></div>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav>
+        <a class="nav-link active" data-page="home" onclick="navigate('home')"><span>⌂</span> Overview</a>
+        <a class="nav-link" data-page="verify" onclick="navigate('verify')"><span>◎</span> Verify content</a>
+        <a class="nav-link" data-page="history" onclick="navigate('history')"><span>◷</span> My history</a>
+        <a class="nav-link" data-page="assistant" onclick="navigate('assistant')"><span>✧</span> Ask TruthLens</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✦</div><b>Think before you share.</b><p>Not sure about something online? We're here to help you check.</p><button onclick="navigate('assistant')">Ask a question →</button></div>
+        <div class="profile"><div class="avatar" id="userAvatar">U</div><div class="profile-info"><b id="userName">User</b><small id="userEmail">user@email.com</small></div><button class="more" onclick="logout()" title="Sign out">↗</button></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <b id="crumb">Overview</b></div>
+        <div class="top-actions">
+          <select id="languageSelect" aria-label="Choose language" onchange="setLanguage(this.value)">
+            <option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option>
+          </select>
+          <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">◐</button>
+          <button class="top-avatar" id="topAvatar">U</button>
+        </div>
+      </header>
+
+      <section id="page-home" class="page">
+        <div class="welcome-row">
+          <div><p class="eyebrow" data-i18n="welcome">YOUR INFORMATION COMPANION</p><h1><span data-i18n="hello">Hello</span>, <span id="helloName">there</span> <span class="wave">✦</span></h1><p class="muted" data-i18n="welcomeSub">Let's make the internet a little clearer, one check at a time.</p></div>
+          <div class="date-chip">✧ <span id="todayDate"></span></div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-text"><span class="hero-tag">✦ YOUR DAILY DOSE OF CLARITY</span><h2>Something doesn't<br>look quite right?</h2><p>Check a headline, message or claim before you pass it along. It only takes a moment.</p><button class="btn white" onclick="navigate('verify')">Start a verification <span>→</span></button></div>
+          <div class="hero-art"><div class="hero-ring ring-a"></div><div class="hero-ring ring-b"></div><div class="hero-shield">✓</div><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span></div>
+        </div>
+        <div class="section-heading"><div><h3>What would you like to check?</h3><p class="muted">Choose a format to get started.</p></div></div>
+        <div class="choice-grid">
+          <button class="choice-card" onclick="setInputMode('text');navigate('verify')"><span class="choice-icon blue">▤</span><b>Text or headline</b><small>Paste a news story, message or claim.</small><span class="choice-arrow">↗</span></button>
+          <button class="choice-card" onclick="setInputMode('image');navigate('verify')"><span class="choice-icon purple">▧</span><b>Image</b><small>Choose an image you want to check.</small><span class="choice-arrow">↗</span></button>
+          <button class="choice-card" onclick="setInputMode('link');navigate('verify')"><span class="choice-icon green">↗</span><b>Website link</b><small>Paste a link to a news article.</small><span class="choice-arrow">↗</span></button>
+        </div>
+        <div class="bottom-grid">
+          <div class="panel tip-panel"><div class="panel-title"><span class="mini-icon">✦</span><b>A small reminder</b></div><h3>Not everything that looks true, is true.</h3><p class="muted">Check the source, look for supporting evidence and read beyond the headline. When in doubt, don't share yet.</p><button class="text-btn" onclick="navigate('assistant')">Ask TruthLens for a tip →</button></div>
+          <div class="panel recent-panel"><div class="panel-title"><b>Recent checks</b><a onclick="navigate('history')">View all →</a></div><div id="recentList" class="recent-list"><div class="empty-small">Your recent checks will appear here.</div></div></div>
+        </div>
+        <p class="disclaimer">TruthLens AI is an assistance tool. Always verify important claims with reliable sources.</p>
+      </section>
+
+      <section id="page-verify" class="page hidden">
+        <div class="page-heading"><p class="eyebrow">CHECK BEFORE YOU SHARE</p><h1>Let's verify something.</h1><p class="muted">Add the content you're unsure about. We'll help you review it.</p></div>
+        <div class="panel verify-panel">
+          <div class="tabs"><button class="tab active" data-mode="text" onclick="setInputMode('text')">▤ Text / headline</button><button class="tab" data-mode="image" onclick="setInputMode('image')">▧ Image</button><button class="tab" data-mode="link" onclick="setInputMode('link')">↗ Website link</button></div>
+          <div id="textInput" class="input-area"><label for="newsText">Paste the news, message or claim</label><textarea id="newsText" rows="7" placeholder="Example: A message says schools will remain closed for the next 10 days..."></textarea><div class="input-hint"><span>Be sure to include the full claim if possible.</span><span id="charCount">0 characters</span></div></div>
+          <div id="imageInput" class="input-area hidden"><label>Upload an image</label><label class="upload-box" for="imageFile"><span class="upload-symbol">↑</span><b>Choose an image to upload</b><small>JPG, PNG or WEBP · Maximum 8 MB</small><span class="btn outline">Browse files</span><img id="imagePreview" class="image-preview hidden" alt="Selected image preview"></label><input id="imageFile" type="file" accept="image/png,image/jpeg,image/webp" hidden onchange="previewImage(event)"><p class="muted tiny">Image review is a demo interface; connect an image-analysis model for real verification.</p></div>
+          <div id="linkInput" class="input-area hidden"><label for="newsLink">Paste the article URL</label><input id="newsLink" type="url" placeholder="https://example.com/news-article"><p class="muted tiny">A link alone does not prove a claim. Review the original source and supporting evidence.</p></div>
+          <div class="verify-actions"><span class="privacy-note">♧ Your content is used for this demo check only.</span><button class="btn primary" id="verifyBtn" onclick="runVerification()">Review content <span>→</span></button></div>
+          <div class="demo-warning">Demo mode: results are illustrative and are not generated by a trained fact-checking model.</div>
+        </div>
+        <div id="resultPanel" class="panel result-panel hidden">
+          <div class="result-top"><div><p class="eyebrow">YOUR REVIEW SUMMARY</p><h2 id="resultTitle">Needs a closer look</h2><p class="muted" id="resultSubtitle">Here is a simple explanation of this demo result.</p></div><div class="result-status" id="resultStatus">!</div></div>
+          <div class="result-meter"><div><span>Review indicator</span><b id="resultScore">—</b></div><div class="meter-track"><span id="meterFill"></span></div><small>This is a heuristic demo indicator, not a verified probability.</small></div>
+          <h4>What should you do?</h4><ul id="resultAdvice" class="advice-list"></ul>
+          <div class="result-footer"><button class="btn outline" onclick="downloadReport()">↓ Download PDF report</button><button class="btn primary" onclick="navigate('assistant')">Ask about this result →</button></div>
+        </div>
+      </section>
+
+      <section id="page-history" class="page hidden">
+        <div class="page-heading"><p class="eyebrow">YOUR ACTIVITY</p><h1>Verification history</h1><p class="muted">A simple record of the content you've reviewed on this device.</p></div>
+        <div class="panel"><div class="history-head"><b>Previous checks</b><button class="text-btn" onclick="clearHistory()">Clear history</button></div><div id="historyList" class="history-list"></div></div>
+      </section>
+
+      <section id="page-assistant" class="page hidden">
+        <div class="page-heading"><p class="eyebrow">YOUR FRIENDLY GUIDE</p><h1>Ask TruthLens.</h1><p class="muted">Have a question about suspicious content or online information? Let's talk.</p></div>
+        <div class="chat-layout panel">
+          <div class="chat-header"><div class="chat-avatar">✳</div><div><b>TruthLens Assistant</b><small><span class="online-dot"></span> Ready to help · Demo assistant</small></div><button class="more" onclick="clearChat()">↻</button></div>
+          <div id="chatMessages" class="chat-messages"><div class="chat-message bot"><div class="chat-bubble">Hi there! 👋 I'm your TruthLens guide. Ask me how to spot misleading information, check a source, or understand a verification result.</div></div></div>
+          <div class="suggestions"><button onclick="quickAsk('How can I identify fake news?')">How do I spot fake news?</button><button onclick="quickAsk('What makes a source reliable?')">Reliable sources?</button><button onclick="quickAsk('What should I do before sharing a message?')">Before I share?</button></div>
+          <form class="chat-compose" onsubmit="sendChat(event)"><input id="chatInput" placeholder="Ask me anything about checking information..." autocomplete="off"><button class="send-btn" aria-label="Send message">↑</button></form>
+          <p class="chat-disclaimer">This is a built-in demo assistant with prepared guidance, not a live AI service.</p>
+        </div>
+      </section>
+
+      <footer class="app-footer">Made to encourage thoughtful sharing. <span>TruthLens AI · Verify Before You Share</span></footer>
+    </main>
+  </section>
+  <script src="app.js"></script>
+</body>
+</html>

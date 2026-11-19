@@ -1,0 +1,27 @@
+# Render Blueprint: New + > Blueprint > pick your repo. Backend only (the frontend goes on Vercel).
+services:
+  - type: web
+    name: truthlens-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: ANTHROPIC_API_KEY
+        sync: false            # paste in the Render dashboard
+      - key: CLAUDE_MODEL
+        value: claude-sonnet-5-5
+      - key: USE_WEB_SEARCH
+        value: "true"
+      - key: GOOGLE_FACTCHECK_API_KEY
+        sync: false            # optional
+      - key: CORS_ORIGINS
+        sync: false            # your Vercel URL, e.g. https://truthlens-ai.vercel.app
+      - key: CORS_ORIGIN_REGEX
+        value: https://.*\.vercel\.app   # optional: also allow Vercel preview deploys
+      - key: RATE_LIMIT_PER_MIN
+        value: "10"

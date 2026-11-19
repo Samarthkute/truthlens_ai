@@ -76,8 +76,8 @@ def _run(**kw):
     except RuntimeError as e:  # missing API key
         raise HTTPException(500, str(e))
     except Exception as e:
-        raise HTTPException(502, f"The AI service failed: {type(e).__name__}. Please try again.")
-
+        print("GEMINI ERROR:", repr(e), flush=True)
+        raise HTTPException(502, f"The AI service failed: {e}")
 
 @app.get("/api/health")
 def health():

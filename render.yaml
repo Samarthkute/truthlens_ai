@@ -11,17 +11,17 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.7
-      - key: ANTHROPIC_API_KEY
-        sync: false            # paste in the Render dashboard
-      - key: CLAUDE_MODEL
-        value: claude-sonnet-5-5
+      - key: GEMINI_API_KEY
+        sync: false # paste in the Render dashboard
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
       - key: USE_WEB_SEARCH
         value: "true"
       - key: GOOGLE_FACTCHECK_API_KEY
-        sync: false            # optional
+        sync: false # optional
       - key: CORS_ORIGINS
-        sync: false            # your Vercel URL, e.g. https://truthlens-ai.vercel.app
+        sync: false # your Vercel URL, e.g. https://truthlens-ai.vercel.app
       - key: CORS_ORIGIN_REGEX
-        value: https://.*\.vercel\.app   # optional: also allow Vercel preview deploys
+        value: https://.*\.vercel\.app # optional: also allow Vercel preview deploys
       - key: RATE_LIMIT_PER_MIN
         value: "10"

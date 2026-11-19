@@ -1,0 +1,12 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+python-dotenv>=1.0
+google-genai>=1.0.0
+httpx>=0.27
+beautifulsoup4>=4.12
+trafilatura>=1.12
+yt-dlp>=2024.10.0
+youtube-transcript-api>=1.0
+# Optional: speech-to-text for Reels/Shorts with no captions (also set ENABLE_WHISPER=true)
+# faster-whisper>=1.0
